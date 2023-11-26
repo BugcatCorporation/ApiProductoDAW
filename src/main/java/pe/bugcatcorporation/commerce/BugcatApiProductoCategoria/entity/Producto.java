@@ -12,12 +12,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "productos")
+@Table(name = "producto")
 
 public class Producto {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private Long Id;
+    private Long idproducto;
     private String nombreProducto;
     private String descripcion;
     private int stock;
@@ -25,7 +25,7 @@ public class Producto {
     private String estado;
     
     @ManyToOne
-    @JoinColumn(name="categoria_id")
+    @JoinColumn(name = "idcategoria")
     private Categoria categoria;
     
     }

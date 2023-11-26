@@ -3,6 +3,7 @@ package pe.bugcatcorporation.commerce.BugcatApiProductoCategoria.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,16 +17,15 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "categorias")
+@Table(name = "categoria")
 
 public class Categoria {   
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long Id;
+    private Long idcategoria;
     private String nombreCategoria;
     
-    @OneToMany(targetEntity = Producto.class , cascade = CascadeType.ALL)
-    @JoinColumn(name="cp_fk", referencedColumnName = "Id")
-    @JsonIgnoreProperties("nombreCategoria")
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("categoria")
     private List<Producto> productos;
 }
